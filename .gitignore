@@ -1,0 +1,8 @@
+.DS_Store
+**/.DS_Store
+
+# Source material and working files (not part of the deployed site)
+Website Materials/
+AL Decodesign Website.html
+*.jpg
+.claude/
