@@ -4,6 +4,9 @@
 # Source material and working files (not part of the deployed site)
 Website Materials/
 AL Decodesign Website.html
+v2/
+Web/
+aldeco-design-system/
 *.jpg
 # ...but img/ holds deployed site assets, not source material
 !img/
