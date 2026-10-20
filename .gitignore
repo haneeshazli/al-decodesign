@@ -5,5 +5,8 @@
 Website Materials/
 AL Decodesign Website.html
 *.jpg
+# ...but img/ holds deployed site assets, not source material
+!img/
+!img/*.jpg
 .claude/
 .vercel
