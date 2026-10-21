@@ -3,6 +3,7 @@
 
 # Source material and working files (not part of the deployed site)
 Website Materials/
+Drive/
 AL Decodesign Website.html
 v2/
 Web/
@@ -13,3 +14,4 @@ aldeco-design-system/
 !img/*.jpg
 .claude/
 .vercel
+Web- Final/
