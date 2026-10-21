@@ -6,6 +6,108 @@
  * not lose them — tools/debundle.py links this sheet back in.
  */
 
+/* ---------------------------------------------------------------- phones */
+@media (max-width: 767.98px) {
+
+  /* Body copy came out of the export at 13–15px in Jost Light. At arm's
+   * length on a phone that is thin and hard to read, and much of it is the
+   * copy that sells the work. Both 300 and 400 ship as real font files, so
+   * moving to 400 is a weight change, not synthetic bolding. */
+  p:not([data-lbl]),
+  li,
+  summary,
+  blockquote,
+  figcaption {
+    font-weight: 400 !important;
+  }
+
+  /* Lift every run of body copy to 16px with room to breathe. [data-lbl] is
+   * the export's uppercase eyebrow label — small and widely tracked on
+   * purpose — so it stays out of this. The fine print keeps its place in the
+   * hierarchy through colour rather than by being harder to read. */
+  [data-r~="pk-grid"] p:not([data-lbl]),
+  [data-r~="pk-grid"] li,
+  [data-r~="pk-row"] p:not([data-lbl]),
+  [data-r~="pk-row"] li,
+  [data-r~="stack"] p:not([data-lbl]),
+  [data-r~="sec"] p:not([data-lbl]),
+  article p:not([data-lbl]),
+  details[data-faq] p {
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Project meta — "Residential · Seri Kembangan" — sat at 11px, below what
+   * the tracking it carries can survive. */
+  [data-r~="more-name"] + span,
+  article [data-lbl],
+  [data-r~="proj"] [data-lbl] {
+    font-size: 12.5px !important;
+    letter-spacing: .14em !important;
+  }
+
+  /* Client reviews run long and are set in Cormorant Light, whose small
+   * x-height makes 18px read smaller than it measures. */
+  blockquote {
+    font-size: 19px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Inline text links are the page's calls to action — "Discuss This
+   * Service", "See the Full Project", the footer's phone number. They render
+   * 18–24px tall, well under the ~44px a thumb needs. Vertical padding grows
+   * the hit area; the matching negative margin keeps every one of them
+   * exactly where the design put it. The export sets padding inline, so this
+   * has to outrank it. */
+  a[class*="al-link"],
+  [data-tap],
+  footer a,
+  [data-r~="stack"] a,
+  article a {
+    padding-block: 13px !important;
+    margin-block: -13px !important;
+  }
+
+  /* Buttons reach 44px honestly rather than by overhang. The export pins
+   * their height inline, which would otherwise cap min-height. */
+  .al-btn,
+  button[data-press] {
+    height: auto !important;
+    min-height: 44px !important;
+  }
+
+  /* The header's quote button is held to 40px so it sits inside the desktop
+   * bar; the mobile bar is 56px, which has room for a full-size target.
+   * The export's own rule is injected after this sheet, so outranking it
+   * takes one more step of specificity than it uses. */
+  [data-r~="hdr"] a.al-btn,
+  [data-r~="hdr"] button.al-btn {
+    min-height: 44px !important;
+  }
+
+  /* The logo doubles as the back-to-top link but is only as tall as the
+   * 24px mark, so it is hard to hit. */
+  [data-r~="hdr"] > a {
+    min-height: 44px !important;
+  }
+
+  /* The two-up project grid puts ~165px covers side by side; when one card's
+   * meta wraps to a second line the next row starts ragged. Pinning the rows
+   * to the top of each cell keeps the covers on a line. */
+  [data-r~="more"] {
+    align-items: start !important;
+  }
+}
+
+/* ------------------------------------------------- small phones */
+@media (max-width: 360px) {
+  /* At this width a two-up grid leaves each cover under 150px across — too
+   * small to read as a room. One column shows the work. */
+  [data-r~="more"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* --------------------------------------------------------------- motion */
 @media (prefers-reduced-motion: reduce) {
   /* The hero loop is decorative; honour the preference even before the
