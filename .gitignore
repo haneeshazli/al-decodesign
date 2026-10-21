@@ -9,9 +9,11 @@ v2/
 Web/
 aldeco-design-system/
 *.jpg
-# ...but img/ holds deployed site assets, not source material
+# ...but img/ holds deployed site assets, not source material. The site's
+# photography now lives in subfolders (img/home, img/cover, img/portfolio),
+# so the exception has to reach every level, not just the top one.
 !img/
-!img/*.jpg
+!img/**/*.jpg
 .claude/
 .vercel
 Web- Final/

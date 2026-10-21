@@ -1,0 +1,16 @@
+/* Hand-maintained refinements layered on top of the design-tool export.
+ *
+ * The export sets nearly all type as inline style attributes, so rules here
+ * need !important to land. That is the same device the export's own mobile
+ * rules use, and keeping the overrides in one file means a re-export does
+ * not lose them — tools/debundle.py links this sheet back in.
+ */
+
+/* --------------------------------------------------------------- motion */
+@media (prefers-reduced-motion: reduce) {
+  /* The hero loop is decorative; honour the preference even before the
+   * runtime gets a chance to pause it. */
+  #top video {
+    display: none;
+  }
+}
