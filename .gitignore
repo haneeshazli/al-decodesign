@@ -12,6 +12,7 @@ aldeco-design-system/
 # ...but img/ holds deployed site assets, not source material
 !img/
 !img/*.jpg
+!img/**/*.jpg
 .claude/
 .vercel
 Web- Final/
