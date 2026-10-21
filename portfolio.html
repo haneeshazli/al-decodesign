@@ -97,15 +97,17 @@
     // the browser restores once the bundle has grown the document — after
     // our jump. The deep link is what the visitor asked for, so win.
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    var deadline = Date.now() + 15000, finding, settling, stopped = false;
+    var deadline = Date.now() + 15000, finding, settling, observer, stopped = false;
     function stop() {
       if (stopped) return;
       stopped = true;
       clearInterval(finding);
       clearInterval(settling);
+      if (observer) observer.disconnect();
+      removeEventListener('load', jump);
       history.replaceState(history.state, '', bare + '#' + id);
     }
-    ['wheel', 'touchstart', 'keydown'].forEach(function (type) {
+    ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (type) {
       addEventListener(type, stop, { once: true, passive: true });
     });
     function jump() {
@@ -120,10 +122,16 @@
       if (document.getElementById(id)) {
         clearInterval(finding);
         jump();
-        // Images and fonts land after the first paint, so hold the target in
-        // place for a moment rather than trusting one measurement.
+        // Project photos arrive over the network long after the first paint
+        // and push the target down the page, so keep correcting until the
+        // document stops growing — or until the visitor takes over.
         settling = setInterval(jump, 250);
-        setTimeout(stop, 2500);
+        if (window.ResizeObserver) {
+          observer = new ResizeObserver(jump);
+          observer.observe(document.documentElement);
+        }
+        addEventListener('load', jump);
+        setTimeout(stop, 12000);
       } else if (Date.now() > deadline) {
         stop();
       }
